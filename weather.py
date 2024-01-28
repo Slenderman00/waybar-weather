@@ -38,7 +38,7 @@ async def getweather(location):
         # Find the closest available hourly forecast to the specified time
         closest_hourly_forecast = min(daily_forecast.hourly, key=lambda h: abs((current_datetime.replace(hour=h.time.hour, minute=h.time.minute) - current_datetime).total_seconds()))
 
-        print(json.dumps({'text': f"{closest_hourly_forecast.kind.emoji}  {closest_hourly_forecast.temperature}°C", "tooltip": str(closest_hourly_forecast.kind)}))
+        print(json.dumps({'text': f"{daily_forecast.astronomy.moon_phase.emoji} | {closest_hourly_forecast.kind.emoji} | {closest_hourly_forecast.temperature}°C", "tooltip": f"Moon Phase: {str(daily_forecast.astronomy.moon_phase)} | Weather: {str(closest_hourly_forecast.kind)} | Temp: {closest_hourly_forecast.temperature}°C" }))
 
 if __name__ == "__main__":
     main()
